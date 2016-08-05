@@ -1,50 +1,71 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>@ViewBag.Title - My Telerik MVC Application</title>
-        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    	<link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.common.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.default.min.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+<head>
 
-	<script src="@Url.Content("~/Scripts/kendo/2016.2.714/jquery.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo/2016.2.714/jszip.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo/2016.2.714/kendo.all.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo/2016.2.714/kendo.aspnetmvc.min.js")"></script>
-	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My MVC Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+
+
+
+    <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+    
+    @Scripts.Render("~/bundles/jquery")
+
 </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
         </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
 
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My Telerik MVC Application</p>
+                    <p>
+                        &copy; @DateTime.Now.Year - Version @typeof(MvcApplication).Assembly.GetName().Version <br />
+                        Programmed and designed by Svetlin Krastanov - www.s2kdesign.com
+                    </p>
+
                 </div>
             </div>
         </footer>
-    </body>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="@Url.Content("~/Scripts/kendo/2016.2.714/jszip.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2016.2.714/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2016.2.714/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
+    @RenderSection("scripts", false)
+</body>
 </html>

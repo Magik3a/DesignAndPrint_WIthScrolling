@@ -1,56 +1,122 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div class="row">
+    <!-- Large modal -->
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
+        Choose different template
+    </button>
 
-@section featured {
-    <div class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="background-color: white">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">
+                    Choose template
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    @for (var i = 0; i < 4; i++)
+                    {
+                        <div class="col-sm-6">
+                            <div class="panel panel-default template" onmousedown="TemplateClick(this)">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        Cool template @i
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    @for (var v = 0; v < 10; v++)
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    Lorem ipsum dolores sit amet
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Choose Template</button>
+            </div>
         </div>
     </div>
+</div>
+<div class="row content-placeholders" id="page-for-printing">
+
+
+    @for (var i = 0; i < 10; i++)
+    {
+        <div class="placeholder">
+            <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
+                <div class="panel-body text-center">
+                    <a href='#' class='btn btn-default btn-add-image' style="display: none;">Add image </a>
+                </div>
+            </div>
+        </div>
     }
 
-<h3>Telerik UI for ASP.NET MVC PanelBar</h3>
-<br />
+</div>
+<hr />
+<div class="row">
+    <button class="btn btn-danger" id="print-button">
+        Print
+    </button>
+</div>
+@section Scripts{
 
-@(Html.Kendo().PanelBar()
-    .Name("IntroPanelBar")
-    .Items(items =>
-    {
-        items.Add()
-            .Text("Getting Started")
-            .Selected(true)
-            .Expanded(true)
-            .Content(@<text>
-                <p style="padding:0 1em">ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and that gives you full control over markup
-                for enjoyable, agile development. ASP.NET MVC includes many features that enable
-                fast, TDD-friendly development for creating sophisticated applications that use
-                the latest web standards.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a></p>
-            </text>);
-        items.Add()
-            .Text("Add NuGet packages and jump-start your coding")
-            .Content(@<text>
-                <p style="padding:0 1em">NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a></p>
-            </text>);
-        items.Add()
-            .Text("Find Web Hosting")
-            .Content(@<text>
-                <p style="padding:0 1em">You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a></p>
-            </text>);
-    })
-)
+
+    <script src="~/Scripts/jquery.browser.min.js"></script>
+    <script src="~/Scripts/jquery.printelement.min.js"></script>
+
+    <script>
+        $('#print-button').click(function () {
+            $('.btn-add-image').hide();
+             $(".box").removeClass("active-box");
+            $("#page-for-printing").printElement({ printMode: 'popup' });
+        });
+
+        function AddImageToPlaceHolder(elem) {
+
+            if ($(elem).hasClass('active-box')) {
+                return;
+            };
+             $('.btn-add-image').hide();
+
+            $(".box").removeClass("active-box");
+            $(elem).addClass("active-box");
+
+
+            var attr = $(".active-box").find(".btn-add-image").attr('style');
+            console.log(attr);
+
+            if (attr == "display: none;") {
+                $('.active-box .btn-add-image').show();
+            } else {
+                $('.active-box .btn-add-image').hide();
+            }
+
+            //$(".active-box .panel-body").html("<a href='#' class='btn btn-default btn-add-image'>Add image to this place </a> ")
+        };
+
+        function TemplateClick(elem) {
+
+            $(".template").removeClass("active-box");
+            $(elem).addClass("active-box");
+
+        };
+
+    </script>
+
+}
