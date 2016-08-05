@@ -139,14 +139,6 @@
                     var objImage = $('#image').cropper('getCropBoxData');
                     ImageCropper.Crop(objImage);
                 });
-
-                //$('.btn-add-image').on('click', function () {
-                //    //grab the image src from the original image and set it to the destination container
-                //    $('#image').attr("src", $('#imgOriginal').attr('src'));
-
-                //    ImageCropper.InitCrop();
-                //});
-
             },
             InitCrop: function () {
                 //initialize the cropper method
@@ -197,7 +189,7 @@
             var files = e.files;
 
             if (e.operation == "upload") {
-                var imagePath = "http://localhost:5377/Uploads/" + getFileInfo(e);
+                var imagePath = document.location.origin+ "/Uploads/" + getFileInfo(e);
 
                 $(".k-upload ").remove();
                 console.log(imagePath);
@@ -207,10 +199,6 @@
                  ImageCropper.InitCrop();
             }
         };
-        //$(function () {
-        //    ImageCropper.init();
-        //});
-
 
         function getFileInfo(e) {
             return $.map(e.files, function (file) {
