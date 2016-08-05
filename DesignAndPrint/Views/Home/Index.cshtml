@@ -1,72 +1,27 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@*<script src="~/Scripts/kendo/2016.2.714/kendo.all.min.intellisense.js"></script>*@
+<div>
+    <img src="~/Images/accent.png" id="imgOriginal" />
+</div>
+
 <div class="row">
-    <!-- Large modal -->
-    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".templates-modal">
         Choose different template
     </button>
-
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document" style="background-color: white">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">
-                    Choose template
-                </h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-
-                    @for (var i = 0; i < 4; i++)
-                    {
-                        <div class="col-sm-6">
-                            <div class="panel panel-default template" onmousedown="TemplateClick(this)">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        Cool template @i
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    @for (var v = 0; v < 10; v++)
-                                    {
-                                        <div class="col-sm-3">
-                                            <div class="panel panel-default">
-                                                <div class="panel-body">
-                                                    Lorem ipsum dolores sit amet
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Choose Template</button>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row content-placeholders" id="page-for-printing">
-
-
     @for (var i = 0; i < 10; i++)
     {
         <div class="placeholder">
             <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
                 <div class="panel-body text-center">
-                    <a href='#' class='btn btn-default btn-add-image' style="display: none;">Add image </a>
+                    <a href='#' class='btn btn-default btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
                 </div>
             </div>
         </div>
     }
-
 </div>
 <hr />
 <div class="row">
@@ -74,49 +29,196 @@
         Print
     </button>
 </div>
+
+
+
+<div class="modal fade templates-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="background-color: white">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">
+                Choose template
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                @for (var i = 0; i < 4; i++)
+                {
+                    <div class="col-sm-6">
+                        <div class="panel panel-default template" onmousedown="TemplateClick(this)">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    Cool template @i
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                @for (var v = 0; v < 10; v++)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                Lorem ipsum dolores sit amet
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Choose Template</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade add-picture-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="background-color: white">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">
+                Add picture to current placeholder
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                <img id="image" src="#" style="display: none">
+
+
+                @(Html.Kendo().Upload()
+                    .Name("files")
+                    .Async(a => a
+                        .Save("Save", "Upload")
+                        .Remove("Remove", "Upload")
+                        .AutoUpload(true)
+                    ).Events(events => events
+                    .Success("onSuccess"))
+                )
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btnCrop">Add picture</button>
+        </div>
+    </div>
+</div>
 @section Scripts{
 
 
     <script src="~/Scripts/jquery.browser.min.js"></script>
     <script src="~/Scripts/jquery.printelement.min.js"></script>
+    <script src="~/Scripts/clickevents.js"></script>
+    <script src="~/Scripts/ajx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.js"></script>
+
 
     <script>
-        $('#print-button').click(function () {
-            $('.btn-add-image').hide();
-             $(".box").removeClass("active-box");
-            $("#page-for-printing").printElement({ printMode: 'popup' });
-        });
+        var ImageCropper = {
+            config: {
+                cropX: 0,
+                cropY: 0,
+                cropHeight: 0,
+                cropWidth: 0
+            },
+            init: function () {
+                this.BindEvents();
+            },
+            BindEvents: function () {
+                $('#btnCrop').on('click', function () {
+                    var objImage = $('#image').cropper('getCropBoxData');
+                    ImageCropper.Crop(objImage);
+                });
 
-        function AddImageToPlaceHolder(elem) {
+                //$('.btn-add-image').on('click', function () {
+                //    //grab the image src from the original image and set it to the destination container
+                //    $('#image').attr("src", $('#imgOriginal').attr('src'));
 
-            if ($(elem).hasClass('active-box')) {
-                return;
-            };
-             $('.btn-add-image').hide();
+                //    ImageCropper.InitCrop();
+                //});
 
-            $(".box").removeClass("active-box");
-            $(elem).addClass("active-box");
+            },
+            InitCrop: function () {
+                //initialize the cropper method
+                $('#image').cropper({
+                    aspectRatio: 16 / 9,
+                    dragMode: 'move', //enabling dragging of image
+                    center: true,
+                    autoCrop: true, //use this to just zoom and pan image around
+                    autoCropArea: 0.3, //the size of the crop box
+                    zoomable: true,
+                    zoomOnWheel: true,
+                    crop: function (e) {
+                        // Output the result data for cropping image.
+                        ImageCropper.SetSizeandCoordinates(e);
+                    }
+                });
+
+            },
+            SetSizeandCoordinates: function (e) {
+                ImageCropper.config.cropX = e.x;
+                ImageCropper.config.cropY = e.y;
+                ImageCropper.config.cropHeight = e.height;
+                ImageCropper.config.cropWidth = e.width;
+            },
+            Crop: function () {
+                var param = {
+                    imagePath: $('#image').attr("src").split("?")[0],
+                    cropPointX: ImageCropper.config.cropX,
+                    cropPointY: ImageCropper.config.cropY,
+                    imageCropWidth: ImageCropper.config.cropWidth,
+                    imageCropHeight: ImageCropper.config.cropHeight
+                };
+                ajx.invoke('/Home/CropImage', JSON.stringify(param), function (data) {
+                    //can refresh the image path in the original location
+                    //destroy the crop instance
+                    $('#image').cropper('destroy');
+                    //replace the original image with new image
+                    //timestamp is used to avoid caching
+                    $('#imgOriginal').attr("src", data.photoPath + "?t=" + new Date().getTime());
 
 
-            var attr = $(".active-box").find(".btn-add-image").attr('style');
-            console.log(attr);
-
-            if (attr == "display: none;") {
-                $('.active-box .btn-add-image').show();
-            } else {
-                $('.active-box .btn-add-image').hide();
+                });
             }
-
-            //$(".active-box .panel-body").html("<a href='#' class='btn btn-default btn-add-image'>Add image to this place </a> ")
         };
 
-        function TemplateClick(elem) {
+        function onSuccess(e) {
+            // Array with information about the uploaded files
+            var files = e.files;
 
-            $(".template").removeClass("active-box");
-            $(elem).addClass("active-box");
+            if (e.operation == "upload") {
+                var imagePath = "http://localhost:5377/Uploads/" + getFileInfo(e);
 
+                $(".k-upload ").remove();
+                console.log(imagePath);
+                $('#image').attr("src", imagePath);
+                $('#image').show();
+                 ImageCropper.init();
+                 ImageCropper.InitCrop();
+            }
         };
+        //$(function () {
+        //    ImageCropper.init();
+        //});
 
+
+        function getFileInfo(e) {
+            return $.map(e.files, function (file) {
+                var info = file.name;
+
+                return info;
+            }).join(", ");
+        }
     </script>
 
 }
