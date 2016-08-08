@@ -29,7 +29,7 @@ function AddImageToPlaceHolder(elem) {
 
 function TemplateClick(elem) {
 
-    $(".template").removeClass("active-box");
-    $(elem).addClass("active-box");
+    $(".template").removeClass("active-template");
+    $(elem).addClass("active-template");
 
 };

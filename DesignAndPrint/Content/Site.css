@@ -2,6 +2,12 @@
     margin-top: 80px;
     /*padding:5px*/ 
 } 
+.k-widget{
+    margin: 50px;
+}
+.container{
+    max-width: 900px;
+}
 .col-sm-3{
     padding: 5px
 }
@@ -13,14 +19,24 @@
 }
 .panel{
     margin-bottom: 0;
+    cursor: pointer;
 }
 .box{
-    height: 150px;
+    
 }
 .active-box {
     -moz-box-shadow: 0 0 25px green, inset 0 0 5px  black;
     -webkit-box-shadow: 0 0 25px green, inset 0 0 5px  black;
     box-shadow: 0 0 25px green, inset 0 0 5px  black;
+}
+
+.active-template {
+    -moz-box-shadow: 0 0 25px blue, inset 0 0 5px  black;
+    -webkit-box-shadow: 0 0 25px blue, inset 0 0 5px  black;
+    box-shadow: 0 0 25px blue, inset 0 0 5px  black;
+}
+.template .panel-body:first-child{
+    height: 60px;
 }
 .content-placeholders {
     margin-top: 20px;
@@ -38,7 +54,7 @@
 
 }
 .placeholder .panel-body{
-    height: 150px;
+    height: 170px;
     position: relative;
     padding: 1px;
 }
@@ -48,4 +64,9 @@
     margin: 0;
     position: absolute;
     right: 0;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .placeholder .panel-body {
+        height: 100px;
+    }
 }

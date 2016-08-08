@@ -12,20 +12,20 @@
 
                 @for (var i = 0; i < 4; i++)
                 {
-                    <div class="col-sm-6">
-                        <div class="panel panel-default template" onmousedown="TemplateClick(this)">
+                    <div class="col-sm-6" data-template-name="template @i">
+                        <div class="panel panel-info template" onmousedown="TemplateClick(this)">
                             <div class="panel-heading">
                                 <div class="panel-title">
                                     Cool template @i
                                 </div>
                             </div>
                             <div class="panel-body">
-                                @for (var v = 0; v < 10; v++)
+                                @for (var v = 0; v < 10 - i; v++)
                                 {
                                     <div class="col-sm-3">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                Lorem ipsum dolores sit amet
+                                      
                                             </div>
                                         </div>
                                     </div>

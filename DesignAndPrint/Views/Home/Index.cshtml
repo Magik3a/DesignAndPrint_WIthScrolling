@@ -6,14 +6,16 @@
     <img src="~/Images/accent.png" id="imgOriginal" />
 </div>
 
-<div class="row">
+<div class="row text-justify">
+     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
+        Add picture to all boxes
+    </button>
+
     <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
         Choose different template
     </button>
 
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
-        Add picture to all boxes
-    </button>
+   
 </div>
 <div class="row content-placeholders" id="page-for-printing">
     @for (var i = 0; i < 10; i++)
@@ -28,9 +30,20 @@
     }
 </div>
 <hr />
-<div class="row">
+<div class="row text-center">
     <button class="btn btn-danger" id="print-button">
-        Print
+        <span class="glyphicon glyphicon-print"></span>
+        Print directly from browser
+    </button>
+
+    <button class="btn btn-danger" id="download-pdf-button">
+        <span class="glyphicon glyphicon-download"></span>
+        Download in PDF format
+    </button>
+   
+        <button class="btn btn-danger" id="send-pdf-button">
+        <span class="glyphicon glyphicon-envelope"></span>
+        Sent to email with attachment  in PDF format
     </button>
 </div>
 
@@ -74,7 +87,7 @@
                 });
 
 
-                
+
             },
             InitCrop: function () {
                 //initialize the cropper method
@@ -94,7 +107,7 @@
 
             },
 
-             InitCropForAll: function () {
+            InitCropForAll: function () {
                 //initialize the cropper method
                 $('#imageForAll').cropper({
                     aspectRatio: 16 / 9,
@@ -110,7 +123,7 @@
                     }
                 });
 
-             },
+            },
 
             SetSizeandCoordinates: function (e) {
                 ImageCropper.config.cropX = e.x;
@@ -138,24 +151,24 @@
                     if (img) {
                         $('.active-box .panel-body img').remove();
                     }
-                    $('.active-box .panel-body').append("<img src='" + data.photoPath +"?t=" + new Date().getTime() +"' style='width: 100%; height: 100%; float: left;' />");
+                    $('.active-box .panel-body').append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 99%; float: left;' />");
                     $(".k-upload ").show();
-                          $('#image').attr("src", "");
-                      $('#image').hide();
-                     $('.add-picture-modal').modal('toggle');
+                    $('#image').attr("src", "");
+                    $('#image').hide();
+                    $('.add-picture-modal').modal('toggle');
                 });
             },
             CropForAll: function () {
-                 var param = {
+                var param = {
                     imagePath: $('#imageForAll').attr("src").split("?")[0],
                     cropPointX: ImageCropper.config.cropX,
                     cropPointY: ImageCropper.config.cropY,
                     imageCropWidth: ImageCropper.config.cropWidth,
                     imageCropHeight: ImageCropper.config.cropHeight
-                 };
+                };
 
 
-                  ajx.invoke('/Home/CropImage', JSON.stringify(param), function (data) {
+                ajx.invoke('/Home/CropImage', JSON.stringify(param), function (data) {
                     //can refresh the image path in the original location
                     //destroy the crop instance
                     $('#imageForAll').cropper('destroy');
@@ -165,20 +178,20 @@
                     $(".box").each(function (index, element) {
                         var img = $(element).children(".panel-body").children("img").length;
                         console.log(img > 0);
-                            if (img) {
-                                $(element).children(".panel-body").children("img").remove();
-                                console.log("have image");
-                            }
+                        if (img) {
+                            $(element).children(".panel-body").children("img").remove();
+                            console.log("have image");
+                        }
 
-                            $(element).children(".panel-body").append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 100%; float: left;' />");
-                                           console.log("appended image");
+                        $(element).children(".panel-body").append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 99%; float: left;' />");
+                        console.log("appended image");
                     });
-                  
-                    
+
+
                     $(".k-upload ").show();
-                      $('#imageForAll').attr("src", "");
-                      $('#imageForAll').hide();
-                     $('.add-to-all-modal').modal('toggle');
+                    $('#imageForAll').attr("src", "");
+                    $('#imageForAll').hide();
+                    $('.add-to-all-modal').modal('toggle');
                 });
             }
         };
@@ -187,27 +200,27 @@
             // Array with information about the uploaded files
 
             if (e.operation == "upload" && e.response.cutforall) {
-               var imagePath =  "../Uploads/" + e.response.filename;
-                            console.log(e.response.cutforall);
-               $(".k-upload-files").remove();
+                var imagePath = "../Uploads/" + e.response.filename;
+                console.log(e.response.cutforall);
+                $(".k-upload-files").remove();
                 $(".k-upload ").hide();
                 console.log(imagePath);
                 $('#imageForAll').attr("src", imagePath);
                 $('#imageForAll').show();
-                
+
                 ImageCropper.InitCropForAll();
                 return;
             }
-             if (e.operation == "upload") {
-                var imagePath =  "../Uploads/" + e.response.filename;
+            if (e.operation == "upload") {
+                var imagePath = "../Uploads/" + e.response.filename;
 
-               $(".k-upload-files").remove();
+                $(".k-upload-files").remove();
                 $(".k-upload ").hide();
                 console.log(imagePath);
                 $('#image').attr("src", imagePath);
                 $('#image').show();
-                
-                 ImageCropper.InitCrop();
+
+                ImageCropper.InitCrop();
             }
         };
 
