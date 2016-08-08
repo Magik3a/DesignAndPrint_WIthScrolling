@@ -17,7 +17,7 @@
         <div class="placeholder">
             <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
                 <div class="panel-body text-center">
-                    <a href='#' class='btn btn-default btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
+                    <a href='#' class='btn btn-success btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
 
 
                 @(Html.Kendo().Upload()
-                    .Name("files")
+                    .Name("files").Multiple(false)
                     .Async(a => a
                         .Save("Save", "Upload")
                         .Remove("Remove", "Upload")
@@ -135,7 +135,7 @@
                 this.BindEvents();
             },
             BindEvents: function () {
-                $('#btnCrop').on('click', function () {
+                $('.btnCrop').on('click', function () {
                     var objImage = $('#image').cropper('getCropBoxData');
                     ImageCropper.Crop(objImage);
                 });
@@ -177,9 +177,17 @@
                     $('#image').cropper('destroy');
                     //replace the original image with new image
                     //timestamp is used to avoid caching
-                    $('#imgOriginal').attr("src", data.photoPath + "?t=" + new Date().getTime());
+                    //$('.active-box').attr("style","background-image: url("+ data.photoPath + "?t=" + new Date().getTime()+")");
 
-
+                    var img = $('.active-box .panel-body img').length;
+                    if (img) {
+                        return;
+                    }
+                    $('.active-box .panel-body').append("<img src='" + data.photoPath +"?t=" + new Date().getTime() +"' style='width: 100%; height: 100%; float: left;' />");
+                    $(".k-upload ").show();
+                          $('#image').attr("src", "");
+                      $('#image').hide();
+                     $('.add-picture-modal').modal('toggle');
                 });
             }
         };
@@ -188,10 +196,11 @@
             // Array with information about the uploaded files
             var files = e.files;
 
-            if (e.operation == "upload") {
-                var imagePath = document.location.origin+ "/Uploads/" + getFileInfo(e);
+             if (e.operation == "upload") {
+                var imagePath =  "../Uploads/" + e.response.filename;
 
-                $(".k-upload ").remove();
+               $(".k-upload-files").remove();
+                  $(".k-upload ").hide();
                 console.log(imagePath);
                 $('#image').attr("src", imagePath);
                 $('#image').show();

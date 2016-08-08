@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace DesignAndPrint.Controllers
         public ActionResult Save(IEnumerable<HttpPostedFileBase> files)
         {
             string physicalPath = "";
+            var fileName = "";
             // The Name of the Upload component is "files"
             if (files != null)
             {
@@ -25,7 +27,8 @@ namespace DesignAndPrint.Controllers
                 {
                     // Some browsers send file names with full path.
                     // We are only interested in the file name.
-                    var fileName = Path.GetFileName(file.FileName);
+                    fileName = DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss-fff",
+                                            CultureInfo.InvariantCulture) + "." + file.FileName.Split('.')[1];
                     physicalPath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
 
                     file.SaveAs(physicalPath);
@@ -33,7 +36,7 @@ namespace DesignAndPrint.Controllers
             }
 
             // Return an empty string to signify success
-            return Content("");
+            return Json(new { status = "OK", filename= fileName }, "text/plain");
         }
 
         public ActionResult Remove(string[] fileNames)
