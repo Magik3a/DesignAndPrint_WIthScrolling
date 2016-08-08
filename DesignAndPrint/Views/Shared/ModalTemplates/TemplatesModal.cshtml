@@ -1,0 +1,45 @@
+﻿<div class="modal fade templates-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="background-color: white">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">
+                Choose template
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                @for (var i = 0; i < 4; i++)
+                {
+                    <div class="col-sm-6">
+                        <div class="panel panel-default template" onmousedown="TemplateClick(this)">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    Cool template @i
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                @for (var v = 0; v < 10; v++)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                Lorem ipsum dolores sit amet
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Choose Template</button>
+        </div>
+    </div>
+</div>

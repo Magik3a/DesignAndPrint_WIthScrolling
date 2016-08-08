@@ -15,12 +15,12 @@
     margin-bottom: 0;
 }
 .box{
-    height: 100px;
+    height: 150px;
 }
 .active-box {
-    -moz-box-shadow: 0 0 15px black;
-    -webkit-box-shadow: 0 0 15px black;
-    box-shadow: 0 0 15px black;
+    -moz-box-shadow: 0 0 25px green, inset 0 0 5px  black;
+    -webkit-box-shadow: 0 0 25px green, inset 0 0 5px  black;
+    box-shadow: 0 0 25px green, inset 0 0 5px  black;
 }
 .content-placeholders {
     margin-top: 20px;
@@ -38,7 +38,7 @@
 
 }
 .placeholder .panel-body{
-    height: 100px;
+    height: 150px;
     position: relative;
     padding: 1px;
 }

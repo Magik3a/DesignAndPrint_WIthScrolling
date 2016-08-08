@@ -713,6 +713,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\rooomsreg.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -860,6 +861,10 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\ModalTemplates\TemplatesModal.cshtml" />
+    <Content Include="Views\Shared\ModalTemplates\AddPictureToPlaceModal.cshtml" />
+    <Content Include="Views\Shared\ModalTemplates\AddPictureToAllPlacesModal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -871,7 +876,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Uploads\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

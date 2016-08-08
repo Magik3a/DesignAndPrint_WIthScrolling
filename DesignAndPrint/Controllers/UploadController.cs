@@ -36,9 +36,31 @@ namespace DesignAndPrint.Controllers
             }
 
             // Return an empty string to signify success
-            return Json(new { status = "OK", filename= fileName }, "text/plain");
+            return Json(new { status = "OK", filename= fileName, cutforall = false }, "text/plain");
         }
 
+        public ActionResult SaveAll(IEnumerable<HttpPostedFileBase> filesforall)
+        {
+            string physicalPath = "";
+            var fileName = "";
+            // The Name of the Upload component is "files"
+            if (filesforall != null)
+            {
+                foreach (var file in filesforall)
+                {
+                    // Some browsers send file names with full path.
+                    // We are only interested in the file name.
+                    fileName = DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss-fff",
+                                            CultureInfo.InvariantCulture) + "." + file.FileName.Split('.')[1];
+                    physicalPath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+
+                    file.SaveAs(physicalPath);
+                }
+            }
+
+            // Return an empty string to signify success
+            return Json(new { status = "OK", filename = fileName, cutforall=true }, "text/plain");
+        }
         public ActionResult Remove(string[] fileNames)
         {
             // The parameter of the Remove action must be called "fileNames"
