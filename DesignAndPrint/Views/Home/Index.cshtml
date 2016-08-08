@@ -204,7 +204,7 @@
                 console.log(imagePath);
                 $('#image').attr("src", imagePath);
                 $('#image').show();
-                 ImageCropper.init();
+                
                  ImageCropper.InitCrop();
             }
         };
@@ -215,7 +215,11 @@
 
                 return info;
             }).join(", ");
-        }
+        };
+        $(document).ready(function () {
+
+             ImageCropper.init();
+        });
     </script>
 
 }
