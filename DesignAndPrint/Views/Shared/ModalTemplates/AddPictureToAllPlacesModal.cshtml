@@ -15,7 +15,7 @@
 
 
                 @(Html.Kendo().Upload()
-                    .Name("filesforall").Multiple(false)
+                    .Name("filesforall").Multiple(false).HtmlAttributes(new { accept = "image/*" })
                     .Async(a => a
                         .Save("SaveAll", "Upload")
                         .Remove("Remove", "Upload")
