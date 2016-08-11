@@ -1,2 +1,1 @@
-# DesignAndPrint
-System for creating and printing stickers with functionalities that include image resizing , cropping and uploading; Custom templates for users to choose and possibility for great stuff!
+[![dddddd.png](https://s10.postimg.org/5dwkhw3qh/dddddd.png)](https://magik3a.github.io/DesignAndPrint/)
