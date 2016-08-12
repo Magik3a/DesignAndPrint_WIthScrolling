@@ -884,6 +884,7 @@
     <Content Include="Views\Shared\Rows\RowTemplates.cshtml" />
     <Content Include="Views\Shared\Rows\RowPaperSizes.cshtml" />
     <Content Include="Views\Shared\Rows\RowHome.cshtml" />
+    <Content Include="Views\Shared\Rows\RowFinishAndPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

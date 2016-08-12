@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-style: italic;
+    font-style: normal;
 }
 
 .k-widget {
@@ -24,9 +24,19 @@ body {
 .col-sm-6 {
     padding: 5px;
 }
+
+#get-help{
+    font-size: 32px;
+    padding: 15px
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #get-help{
+    font-size: 22px;
+    padding-top: 20px;
+}
+}
 .papersizes{
     margin-top: 20px;
-    margin-bottom: 100px;
 }
 
 .papersizes-active{
@@ -44,6 +54,13 @@ body {
 
       height: 550px;
       margin-top:25px;
+}
+.btn-continue{
+    clear: both;
+    z-index: 1;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     #home{
@@ -147,7 +164,16 @@ body {
     width: 100%;
     padding: 10px;
 }
-
+.logo-home{
+    padding: 50px;
+    width: 100%;
+}
+@media only screen and (min-width : 1023px) {
+    .logo-home{
+    padding: 50px;
+    width: 60%;
+}
+}
 #wrapper {
     padding-left: 250px;
     transition: all 0.4s ease 0s;
@@ -192,14 +218,17 @@ body {
 
     .sidebar-nav li {
         line-height: 40px;
+                 opacity: 0.35;
     }
-
+    .nav  .active{
+        opacity: 1;
+    }
         .sidebar-nav li:not(:first-child) a {
             color: #aaa;
             display: block;
             text-decoration: none;
             font-size: 22px;
-          opacity: 0.85;
+ 
           transition: all ease-in-out 0.1s;
         }
 
