@@ -2,51 +2,16 @@
     ViewBag.Title = "Home Page";
 }
 @*<script src="~/Scripts/kendo/2016.2.714/kendo.all.min.intellisense.js"></script>*@
-<div>
-    <img src="~/Images/accent.png" id="imgOriginal" />
-</div>
 
-<div class="row text-justify">
-     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
-        Add picture to all boxes
-    </button>
+@Html.Partial("Rows/RowHome")
 
-    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
-        Choose different template
-    </button>
+@Html.Partial("Rows/RowPaperSizes")
 
-   
-</div>
-<div class="row content-placeholders" id="page-for-printing">
-    @for (var i = 0; i < 10; i++)
-    {
-        <div class="placeholder">
-            <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
-                <div class="panel-body text-center">
-                    <a href='#' class='btn btn-success btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-<hr />
-<div class="row text-center">
-    <button class="btn btn-danger" id="print-button">
-        <span class="glyphicon glyphicon-print"></span>
-        Print directly from browser
-    </button>
+@Html.Partial("Rows/RowTemplates")
 
-    <button class="btn btn-danger" id="download-pdf-button">
-        <span class="glyphicon glyphicon-download"></span>
-        Download in PDF format
-    </button>
-   
-        <button class="btn btn-danger" id="send-pdf-button">
-        <span class="glyphicon glyphicon-envelope"></span>
-        Sent to email with attachment  in PDF format
-    </button>
-</div>
+@Html.Partial("Rows/RowAddImages")
 
+@Html.Partial("Rows/RowFinishAndPrint")
 
 @Html.Partial("ModalTemplates/TemplatesModal")
 

@@ -1,0 +1,31 @@
+﻿<div class="row " id="choose-template">
+
+    @for (var i = 0; i < 4; i++)
+    {
+        <div class="col-sm-6" data-template-name="template @i">
+            <div class="panel panel-info template" onmousedown="TemplateClick(this)">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Cool template @i
+                    </div>
+                </div>
+                <div class="panel-body">
+                    @for (var v = 0; v < 10 - i; v++)
+                    {
+                        <div class="col-sm-3">
+                            <div class="panel panel-default template-small-box">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<div class="row text-center">
+    <button class="btn btn-success btn-lg btn-continue">Continue With Adding Images</button>
+</div>

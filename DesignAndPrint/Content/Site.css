@@ -1,72 +1,329 @@
-﻿body{
-    margin-top: 50px;
-    /*padding:5px*/ 
-} 
-.k-widget{
+﻿@font-face {
+    font-family: fontawesome-webfont;
+    src: url('../fonts/fontawesome-webfont.eot'), url('../fonts/fontawesome-webfont.ttf') format('truetype'), url('../fonts/fontawesome-webfont.woff');
+}
+
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: normal;
+}
+
+.k-widget {
     margin: 50px;
 }
-.container{
+
+.container {
     max-width: 900px;
 }
-.col-sm-3{
-    padding: 5px
+
+.col-sm-3 {
+    padding: 5px;
 }
-.col-sm-6{
-    padding: 5px
+
+.col-sm-6 {
+    padding: 5px;
 }
-.modal-dialog{
+
+#get-help{
+    font-size: 32px;
+    padding: 15px
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #get-help{
+    font-size: 22px;
+    padding-top: 20px;
+}
+}
+.papersizes{
+    margin-top: 20px;
+}
+
+.papersizes-active{
+
+}
+
+.a4size{
+    height: 600px;
+    width: 49%;
+    margin-right: 2%;
+}
+
+.UsPaper{
+      width: 49%;
+
+      height: 550px;
+      margin-top:25px;
+}
+.btn-continue{
+    clear: both;
+    z-index: 1;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #home{
+        font-size: 28px;
+    }
+    .a4size{
+    height: 600px;
+    width: 96%;
+    margin: 2%;
+}
+
+.UsPaper{
+      width: 99%;
+
+      height: 550px;
+      margin-top:25px;
+}
+}
+.modal-dialog {
     width: 85%;
 }
-.panel{
+
+.panel {
     margin-bottom: 0;
     cursor: pointer;
 }
-.box{
-    
+
+.box {
 }
+
 .active-box {
-    -moz-box-shadow: 0 0 25px green, inset 0 0 5px  black;
-    -webkit-box-shadow: 0 0 25px green, inset 0 0 5px  black;
-    box-shadow: 0 0 25px green, inset 0 0 5px  black;
+    -moz-box-shadow: 0 0 25px green, inset 0 0 5px black;
+    -webkit-box-shadow: 0 0 25px green, inset 0 0 5px black;
+    box-shadow: 0 0 25px green, inset 0 0 5px black;
 }
 
 .active-template {
-    -moz-box-shadow: 0 0 25px blue, inset 0 0 5px  black;
-    -webkit-box-shadow: 0 0 25px blue, inset 0 0 5px  black;
-    box-shadow: 0 0 25px blue, inset 0 0 5px  black;
+    -moz-box-shadow: 0 0 25px blue, inset 0 0 5px black;
+    -webkit-box-shadow: 0 0 25px blue, inset 0 0 5px black;
+    box-shadow: 0 0 25px blue, inset 0 0 5px black;
 }
-.template .panel-body:first-child{
+
+    .active-template > .panel-body {
+        background-color: rgba(0, 13, 255, 0.35);
+    }
+
+.template .panel-body:first-child {
     height: 60px;
 }
+
+.template .template-small-box {
+}
+
 .content-placeholders {
     margin-top: 20px;
     padding: 5px;
     -moz-box-shadow: 0 0 1px;
     -webkit-box-shadow: 0 0 1px;
     box-shadow: 0 0 1px;
-    
 }
-.placeholder{
+
+.placeholder {
     width: 32%;
     padding: 5px;
     display: inline-block;
-
-
 }
-.placeholder .panel-body{
-    height: 170px;
-    position: relative;
-    padding: 1px;
-}
-.btn-add-image{
+
+    .placeholder .panel-body {
+        height: 170px;
+        position: relative;
+        padding: 1px;
+    }
+
+.btn-add-image {
     /*something is horribly wrong with this button*/
-   
     margin: 0;
     position: absolute;
     right: 0;
 }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .placeholder .panel-body {
         height: 100px;
     }
 }
+
+
+/*Side menu CSS START*/
+.solo{
+   width: 100%;
+   margin-left: 0;
+}
+
+.follow {
+    text-align: center;
+    font-size: 22px;
+    color: white;
+}
+
+.logo {
+    width: 100%;
+    padding: 10px;
+}
+.logo-home{
+    padding: 50px;
+    width: 100%;
+}
+@media only screen and (min-width : 1023px) {
+    .logo-home{
+    padding: 50px;
+    width: 60%;
+}
+}
+#wrapper {
+    padding-left: 250px;
+    transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+    margin-left: -250px;
+    left: 250px;
+    width: 250px;
+    background: white;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 0.4s ease 0s;
+}
+
+#wrapper.active {
+    padding-left: 0;
+}
+
+    #wrapper.active #sidebar-wrapper {
+        left: 0;
+    }
+
+#page-content-wrapper {
+    width: 94%;
+    margin-left: 3%;
+}
+
+
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: white
+}
+
+    .sidebar-nav li {
+        line-height: 40px;
+                 opacity: 0.35;
+    }
+    .nav  .active{
+        opacity: 1;
+    }
+        .sidebar-nav li:not(:first-child) a {
+            color: #aaa;
+            display: block;
+            text-decoration: none;
+            font-size: 22px;
+ 
+          transition: all ease-in-out 0.1s;
+        }
+
+        .sidebar-nav li a span:before {
+            position: absolute;
+            left: 0;
+            color: #999999;
+            text-align: center;
+            width: 20px;
+            line-height: 18px;
+        }
+
+        .sidebar-nav li a:hover,
+        .sidebar-nav li.active {
+            color: #fff;
+            background: rgb(255, 255, 255);
+            text-decoration: none;
+            opacity: 1;
+         
+        }
+
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+    .sidebar-nav > .sidebar-brand {
+        height: 65px;
+        line-height: 60px;
+        font-size: 18px;
+    }
+
+        .sidebar-nav > .sidebar-brand a {
+            color: #999999;
+        }
+
+            .sidebar-nav > .sidebar-brand a:hover {
+                color: #fff;
+                background: none;
+
+            }
+
+
+
+.content-header {
+    height: 65px;
+    line-height: 65px;
+}
+
+    .content-header h1 {
+        margin: 0;
+        margin-left: 20px;
+        line-height: 65px;
+        display: inline-block;
+    }
+
+#menu-toggle {
+}
+
+.btn-menu {
+    color: #000;
+}
+
+.inset {
+    padding: 20px;
+}
+
+@media (max-width:767px) {
+
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        left: 0;
+    }
+
+    #wrapper.active {
+        position: relative;
+        left: 250px;
+    }
+
+        #wrapper.active #sidebar-wrapper {
+            left: 250px;
+            width: 250px;
+            transition: all 0.4s ease 0s;
+        }
+
+    #menu-toggle {
+        display: inline-block;
+    }
+
+    .inset {
+        padding: 15px;
+    }
+}
+
+/*Side menu CSS END*/
