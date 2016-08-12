@@ -1,4 +1,17 @@
-﻿$('#print-button').click(function () {
+﻿$('#btnContinueWithPapers').click(function () {
+    $('#aChoosePaper').click();
+});
+$('#btnContinueWiTemplates').click(function () {
+    $('#aChooseTemplate').click();
+});
+$('#btnContinueWithPictures').click(function () {
+    $('#aChoosePictures').click();
+});
+$('#btnFinishAndPrint').click(function () {
+    $('#aFinishAndPrint').click();
+});
+
+$('#print-button').click(function () {
     $('.btn-add-image').hide();
     $(".box").removeClass("active-box");
     $("#page-for-printing").printElement({ printMode: 'popup' });
