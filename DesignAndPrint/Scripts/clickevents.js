@@ -1,11 +1,12 @@
 ﻿$(document).ready(function () {
-      window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     $('#btnContinueWithPapers').animate({
         opacity: 1
     }, 1500);
 });
 
 $('#btnContinueWithPapers').click(function () {
+
     $(this).animate({
         opacity: 0
     }, 500);
@@ -14,13 +15,22 @@ $('#btnContinueWithPapers').click(function () {
         opacity: 1
     }, 500, function () {
         $('#btnContinueWiTemplates').animate({
-        opacity: 1
-    }, 1500);
+            opacity: 1
+        }, 1500);
     });
 
 });
 $('#btnContinueWiTemplates').click(function () {
-
+    console.log($(".UsPaper").hasClass('active-paper'));
+    if ( !$(".a4size").hasClass('active-paper') && !$(".UsPaper").hasClass('active-paper')) {
+        $("#wrapper").overhang({
+          type: "warn",
+            message: "You have to choose paper size!",
+            duration: 2,
+            upper: true
+        });
+        return;
+    }
     $(this).animate({
         opacity: 0
     }, 500);
@@ -30,11 +40,20 @@ $('#btnContinueWiTemplates').click(function () {
         opacity: 1
     }, 500, function () {
         $('#btnContinueWithPictures').animate({
-        opacity: 1
-    }, 1500);
+            opacity: 1
+        }, 1500);
     });
 });
 $('#btnContinueWithPictures').click(function () {
+       if (!$(".template").hasClass('active-template')) {
+        $("#wrapper").overhang({
+          type: "warn",
+            message: "You have to choose template!",
+            duration: 2,
+            upper: true
+        });
+        return;
+    }
     $(this).animate({
         opacity: 0
     }, 500);
@@ -44,8 +63,8 @@ $('#btnContinueWithPictures').click(function () {
         opacity: 1
     }, 500, function () {
         $('#btnFinishAndPrint').animate({
-        opacity: 1
-    }, 1500);
+            opacity: 1
+        }, 1500);
     });
 });
 $('#btnFinishAndPrint').click(function () {
@@ -95,6 +114,6 @@ function TemplateClick(elem) {
 
 };
 $(".papersizes .panel").click(function () {
-      $(".papersizes .panel").removeClass("active-paper");
+    $(".papersizes .panel").removeClass("active-paper");
     $(this).addClass("active-paper");
 })

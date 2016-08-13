@@ -53,6 +53,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
 
+    <link href="~/Scripts/overhang.min.css" rel="stylesheet" />
+
 </head>
 <body>
      <div id="wrapper" data-spy="scroll" data-target="#spy" class="">
@@ -102,17 +104,12 @@
     <script src="@Url.Content("~/Scripts/kendo/2016.2.714/kendo.aspnetmvc.min.js")"></script>
     <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 
-
+    <script src="~/Scripts/overhang.min.js"></script>
     <script>
             
        $(document).ready(function() {
         // Some error notification
-$("body").overhang({
-  type: "error",
-  message: "Whoops! Something went wrong!",
-  closeConfirm: true
-});
-                
+           
 	/*Menu-toggle*/
     $(".menu-toggle").click(function(e) {
         e.preventDefault();
@@ -123,7 +120,7 @@ $("body").overhang({
     $('body').scrollspy({ target: '#spy', offset:80});
 
     /*Smooth link animation*/
-    $('a[href*=#]:not([href=#])').click(function() {
+    $('a[href*=\\#]:not([href=\\#])').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
             var target = $(this.hash);
