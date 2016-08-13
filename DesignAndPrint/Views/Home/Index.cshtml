@@ -11,44 +11,46 @@
     var templates = new List<DesignAndPrint.Models.Templates>() {
         new DesignAndPrint.Models.Templates()
         {
-            TemplateName = "",
+            TemplateName = "template-square",
             TemplateClassName = "col-sm-6 template-square",
-                 BoxClassName = "template-box-square",
-            BoxCount = 20
+                 BoxClassName = "col-sm-3 template-box-square",
+            BoxCount = 16
         },
          new DesignAndPrint.Models.Templates()
         {
-            TemplateName = "",
+            TemplateName = "template-rectangle",
             TemplateClassName = "col-sm-6 template-rectangle",
-            BoxClassName = "template-box-rectangle",
-            BoxCount = 15
+            BoxClassName = "col-sm-6 template-box-rectangle",
+            BoxCount = 8
         },
           new DesignAndPrint.Models.Templates()
         {
-            TemplateName = "",
+            TemplateName = "template-ellipsis",
             TemplateClassName = "col-sm-6 template-ellipsis",
-                 BoxClassName = "template-box-ellipsis",
+                 BoxClassName = "col-sm-6 template-box-ellipsis",
             BoxCount = 8
         },
            new DesignAndPrint.Models.Templates()
         {
-            TemplateName = "",
+            TemplateName = "template-round",
             TemplateClassName = "col-sm-6 template-round",
-               BoxClassName = "template-box-round",
-            BoxCount = 12
+               BoxClassName = "col-sm-3 template-box-round",
+            BoxCount = 16
         }
     };
 }
 
 @Html.Partial("Rows/RowTemplates", templates)
 
-@Html.Partial("Rows/RowAddImages")
+<div id="image-panel">
+    @Html.Partial("Rows/RowAddImages")
+</div>
 
 @Html.Partial("Rows/RowFinishAndPrint")
 
 @Html.Partial("ModalTemplates/TemplatesModal")
 
-@Html.Partial("ModalTemplates/AddPictureToPlaceModal")
+@Html.Partial("ModalTemplates/AddPictureToPlaceModal", templates[0])
 
 @Html.Partial("ModalTemplates/AddPictureToAllPlacesModal")
 
@@ -71,6 +73,11 @@
         //        e.stopPropagation();
         //    }
         //})
+
+
+
+
+
 
         var ImageCropper = {
             config: {
@@ -237,8 +244,19 @@
                 return info;
             }).join(", ");
         };
+
         $(document).ready(function () {
+
+            var fourColumnHeight = $(".template-box-square .panel-body").width();
+            $(".template-box-square .panel-body").height(fourColumnHeight);
+            $(".template-box-round .panel-body").height(fourColumnHeight);
+            $(".template-box-rectangle .panel-body").height(fourColumnHeight);
+            $(".template-box-ellipsis .panel-body").height(fourColumnHeight);
+
             ImageCropper.init();
+
+
+
         });
     </script>
 

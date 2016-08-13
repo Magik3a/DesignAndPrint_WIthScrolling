@@ -22,9 +22,9 @@ $('#btnContinueWithPapers').click(function () {
 });
 $('#btnContinueWiTemplates').click(function () {
     console.log($(".UsPaper").hasClass('active-paper'));
-    if ( !$(".a4size").hasClass('active-paper') && !$(".UsPaper").hasClass('active-paper')) {
+    if (!$(".a4size").hasClass('active-paper') && !$(".UsPaper").hasClass('active-paper')) {
         $("#wrapper").overhang({
-          type: "warn",
+            type: "warn",
             message: "You have to choose paper size!",
             duration: 2,
             upper: true
@@ -45,9 +45,9 @@ $('#btnContinueWiTemplates').click(function () {
     });
 });
 $('#btnContinueWithPictures').click(function () {
-       if (!$(".template").hasClass('active-template')) {
+    if (!$(".template").hasClass('active-template')) {
         $("#wrapper").overhang({
-          type: "warn",
+            type: "warn",
             message: "You have to choose template!",
             duration: 2,
             upper: true
@@ -108,10 +108,21 @@ function AddImageToPlaceHolder(elem) {
 };
 
 function TemplateClick(elem) {
-
+    if ($(elem).hasClass('active-template')) {
+        return;
+    };
     $(".template").removeClass("active-template");
     $(elem).addClass("active-template");
-
+    console.log($('.active-template').parent().data('templatename'));
+    var param = {
+        templateName: $('.active-template').parent().data('templatename')
+    };
+    $.get("/Home/ChangeTemplate", { templateName: $('.active-template').parent().data('templatename') })
+  .done(function (data) {
+      $('#page-for-printing').html(data);
+      var fourColumnHeight = $(".template-box-square  .panel-body").width() * 2;
+        $("#page-for-printing  .panel-body").height(fourColumnHeight);
+  });
 };
 $(".papersizes .panel").click(function () {
     $(".papersizes .panel").removeClass("active-paper");

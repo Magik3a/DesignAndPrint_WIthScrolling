@@ -1,39 +1,35 @@
 ﻿
 
-
 <div class="" id="choose-image">
 
-<div class="text-justify" >
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
-        Add picture to all boxes
-    </button>
+    <div class="text-justify">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
+            Add picture to all boxes
+        </button>
 
-    @*<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
-        Choose different template
-    </button>*@
+        @*<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
+                Choose different template
+            </button>*@
 
 
-</div>
-<div class="content-placeholders" id="page-for-printing">
-    @for (var i = 0; i < 10; i++)
-    {
-        <div class="placeholder">
-            <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
-                <div class="panel-body text-center">
-                    <a href='#' class='btn btn-success btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-<div class="row text-center">
-    <button class="btn btn-success btn-lg btn-continue" id="btnFinishAndPrint">
-                <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+    </div>
+    <div class="content-placeholders" id="page-for-printing">
+        @Html.Partial("Rows/Template", new DesignAndPrint.Models.Templates()
+   {
+       TemplateName = "template-square",
+       TemplateClassName = "col-sm-12 template-square",
+       BoxClassName = "col-sm-3 template-box-square",
+       BoxCount = 16
+   })
+    </div>
+    <div class="row text-center">
+        <button class="btn btn-success btn-lg btn-continue" id="btnFinishAndPrint">
+            <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
 
-        Finnish and Print
-                <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+            Finnish and Print
+            <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
 
-    </button>
-</div>
-    
+        </button>
+    </div>
+
 </div>

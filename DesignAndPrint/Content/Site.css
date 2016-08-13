@@ -143,17 +143,8 @@ body {
     box-shadow: 0 0 1px;
 }
 
-.placeholder {
-    width: 32%;
-    padding: 5px;
-    display: inline-block;
-}
 
-    .placeholder .panel-body {
-        height: 170px;
-        position: relative;
-        padding: 1px;
-    }
+  
 
 .btn-add-image {
     /*something is horribly wrong with this button*/

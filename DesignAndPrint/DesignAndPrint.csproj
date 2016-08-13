@@ -953,6 +953,7 @@
     <Content Include="Views\Shared\Rows\RowFinishAndPrint.cshtml" />
     <Content Include="Views\Shared\ModalTemplates\DemoModal.cshtml" />
     <Content Include="Views\Shared\ModalTemplates\EmailModal.cshtml" />
+    <Content Include="Views\Shared\Rows\Template.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

@@ -1,0 +1,14 @@
+﻿@model DesignAndPrint.Models.Templates
+
+    @for (var i = 0; i < Model.BoxCount; i++)
+    {
+        <div class="placeholder  @Model.BoxClassName">
+            <div class="panel panel-default box" onmousedown="AddImageToPlaceHolder(this)">
+                <div class="panel-body text-center">
+                    <a href='#' class='btn btn-success btn-add-image' style="display: none;" data-toggle="modal" data-target=".add-picture-modal">Add image </a>
+                </div>
+            </div>
+        </div>
+    }
+
+<div class="clearfix"></div>

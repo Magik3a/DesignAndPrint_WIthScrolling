@@ -3,11 +3,11 @@
 <div class="row " id="choose-template">
  @foreach (var template in Model)
  {
-            <div class="@template.TemplateClassName" data-template-name="@template.TemplateName">
+            <div class="@template.TemplateClassName" data-templateName="@template.TemplateName">
                 <div class="panel panel-info template" onmousedown="TemplateClick(this)">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            Boxes in current template - @template.BoxCount
+                            Stickers in current template - @template.BoxCount
                         </div>
                     </div>
                     <div class="panel-body">
