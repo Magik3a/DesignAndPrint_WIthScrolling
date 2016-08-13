@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Models\Templates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -463,15 +464,25 @@
     <Content Include="Content\kendo\2016.2.714\Uniform\sprite_2x.png" />
     <Content Include="Content\kendo\2016.2.714\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2016.2.714\Uniform\sprite_kpi_2x.png" />
+    <Content Include="Content\Templates.css">
+      <DependentUpon>Templates.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Templates.min.css">
+      <DependentUpon>Templates.css</DependentUpon>
+    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\AddOnePicture.gif" />
+    <Content Include="Images\AddPictureToAll.gif" />
+    <Content Include="Images\backgraound-tile.jpg" />
     <Content Include="Images\buttonn1.jpg" />
     <Content Include="Images\buttonn2.jpg" />
     <Content Include="Images\buttonn3.jpg" />
     <Content Include="Images\buttonn4.jpg" />
     <Content Include="Images\buttons.jpg" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\LogoFB.png" />
     <Content Include="packages.config" />
     <Content Include="Content\kendo\2016.2.714\kendo.black.min.css.map" />
     <Content Include="Content\kendo\2016.2.714\kendo.black.mobile.min.css.map" />
@@ -578,6 +589,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Templates.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\PublishProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -724,6 +740,8 @@
     <Content Include="Scripts\kendo\2016.2.714\kendo.window.min.js" />
     <Content Include="Scripts\kendo\2016.2.714\pako_deflate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\overhang.min.css" />
+    <Content Include="Scripts\overhang.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -885,6 +903,8 @@
     <Content Include="Views\Shared\Rows\RowPaperSizes.cshtml" />
     <Content Include="Views\Shared\Rows\RowHome.cshtml" />
     <Content Include="Views\Shared\Rows\RowFinishAndPrint.cshtml" />
+    <Content Include="Views\Shared\ModalTemplates\DemoModal.cshtml" />
+    <Content Include="Views\Shared\ModalTemplates\EmailModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -895,7 +915,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

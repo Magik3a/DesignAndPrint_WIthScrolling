@@ -3,10 +3,17 @@
     src: url('../fonts/fontawesome-webfont.eot'), url('../fonts/fontawesome-webfont.ttf') format('truetype'), url('../fonts/fontawesome-webfont.woff');
 }
 
+@import 'https://fonts.googleapis.com/css?family=Lato';
 
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    body {
+        overflow: auto !important;
+    }
 }
 
 .k-widget {
@@ -25,60 +32,88 @@ body {
     padding: 5px;
 }
 
-#get-help{
+#get-help {
     font-size: 32px;
-    padding: 15px
+    padding: 15px;
 }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    #get-help{
-    font-size: 22px;
-    padding-top: 20px;
+    #get-help {
+        font-size: 22px;
+        padding-top: 20px;
+    }
 }
-}
-.papersizes{
+
+.papersizes {
     margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.papersizes-active{
-
+.active-paper {
+    -moz-box-shadow: 0 0 25px blue, 0 0 25px rgba(0, 13, 255, 0.35) inset;
+    -webkit-box-shadow: 0 0 25px blue, 0 0 25px rgba(0, 13, 255, 0.35) inset;
+    box-shadow: 0 0 25px blue, 0 0 25px rgba(0, 13, 255, 0.35) inset;
 }
 
-.a4size{
+    .paper-name {
+
+        font-size: 10em;
+        font-style: italic;
+        text-shadow: 0 10px 5px #808080;
+    }
+
+.a4size {
     height: 600px;
-    width: 49%;
-    margin-right: 2%;
+    width: 42%;
+    margin-left: 5%;
 }
 
-.UsPaper{
-      width: 49%;
-
-      height: 550px;
-      margin-top:25px;
+.UsPaper {
+    width: 42%;
+    height: 550px;
+    margin-left: 5%;
+    text-align: center;
 }
-.btn-continue{
+
+.btn-continue {
     clear: both;
     z-index: 1;
     margin-top: 50px;
     margin-bottom: 100px;
-
+    opacity: 0;
 }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    #home{
+    /*.btn-continue{
+    clear: both;
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+}*/
+
+    #home {
         font-size: 28px;
     }
-    .a4size{
-    height: 600px;
-    width: 96%;
-    margin: 2%;
+    .paper-name{
+        font-size: 4em;
+        margin-top: 30%;
+
+    }
+    .a4size {
+        height: 400px;
+        width: 92%;
+        margin: 4%;
+    }
+
+    .UsPaper {
+        width: 91%;
+        height: 350px;
+        margin-top: 25px;
+    }
 }
 
-.UsPaper{
-      width: 99%;
-
-      height: 550px;
-      margin-top:25px;
-}
-}
 .modal-dialog {
     width: 85%;
 }
@@ -97,22 +132,8 @@ body {
     box-shadow: 0 0 25px green, inset 0 0 5px black;
 }
 
-.active-template {
-    -moz-box-shadow: 0 0 25px blue, inset 0 0 5px black;
-    -webkit-box-shadow: 0 0 25px blue, inset 0 0 5px black;
-    box-shadow: 0 0 25px blue, inset 0 0 5px black;
-}
 
-    .active-template > .panel-body {
-        background-color: rgba(0, 13, 255, 0.35);
-    }
 
-.template .panel-body:first-child {
-    height: 60px;
-}
-
-.template .template-small-box {
-}
 
 .content-placeholders {
     margin-top: 20px;
@@ -146,37 +167,74 @@ body {
         height: 100px;
     }
 }
+/*Start side buttons*/
+#aChooseTemplate, #aChoosePictures, #aFinishAndPrint {
+    display: none;
+}
+
+/*end side buttons*/
+
+
+/*Start rows*/
+#choose-paper {
+    opacity: 0.2;
+}
+
+#panel-home {
+}
+
+#choose-template {
+    opacity: 0.2;
+}
+
+#choose-image {
+    opacity: 0.2;
+}
+
+
+#finishAndPrint {
+    opacity: 0.2;
+    margin-bottom: 20%;
+}
+/*End rows*/
 
 
 /*Side menu CSS START*/
-.solo{
-   width: 100%;
-   margin-left: 0;
+.solo {
+    width: 100%;
+    margin-left: 0;
 }
 
 .follow {
     text-align: center;
     font-size: 22px;
-    color: white;
+    color: black;
 }
 
 .logo {
     width: 100%;
     padding: 10px;
 }
-.logo-home{
+
+.logo-home {
     padding: 50px;
     width: 100%;
 }
+
 @media only screen and (min-width : 1023px) {
-    .logo-home{
-    padding: 50px;
-    width: 60%;
+    .logo-home {
+        padding: 50px;
+        width: 60%;
+    }
 }
-}
+
 #wrapper {
+    overflow: auto;
     padding-left: 250px;
     transition: all 0.4s ease 0s;
+    background-image: url(../Images/backgraound-tile.jpg);
+    background-position: top;
+    background-attachment: fixed;
 }
 
 #sidebar-wrapper {
@@ -213,63 +271,68 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    background: white
+    background: white;
 }
 
     .sidebar-nav li {
         line-height: 40px;
-                 opacity: 0.35;
+        opacity: 0.35;
     }
-    .nav  .active{
-        opacity: 1;
-    }
-        .sidebar-nav li:not(:first-child) a {
-            color: #aaa;
-            display: block;
-            text-decoration: none;
-            font-size: 22px;
- 
-          transition: all ease-in-out 0.1s;
+
+        .sidebar-nav li img {
+            width: 90%;
         }
 
-        .sidebar-nav li a span:before {
-            position: absolute;
-            left: 0;
-            color: #999999;
-            text-align: center;
-            width: 20px;
-            line-height: 18px;
-        }
+.active img {
+    opacity: 1;
+    cursor: pointer !important;
+}
 
-        .sidebar-nav li a:hover,
-        .sidebar-nav li.active {
+.sidebar-nav li:not(:first-child) a {
+    color: #aaa;
+    display: block;
+    text-decoration: none;
+    font-size: 22px;
+    cursor: not-allowed;
+    transition: all ease-in-out 0.1s;
+}
+
+.sidebar-nav li a span:before {
+    position: absolute;
+    left: 0;
+    color: #999999;
+    text-align: center;
+    width: 20px;
+    line-height: 18px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li.active {
+    color: #fff;
+    background: rgb(255, 255, 255);
+    text-decoration: none;
+    opacity: 1;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+    .sidebar-nav > .sidebar-brand a {
+        color: #999999;
+    }
+
+        .sidebar-nav > .sidebar-brand a:hover {
             color: #fff;
-            background: rgb(255, 255, 255);
-            text-decoration: none;
-            opacity: 1;
-         
+            background: none;
         }
-
-        .sidebar-nav li a:active,
-        .sidebar-nav li a:focus {
-            text-decoration: none;
-        }
-
-    .sidebar-nav > .sidebar-brand {
-        height: 65px;
-        line-height: 60px;
-        font-size: 18px;
-    }
-
-        .sidebar-nav > .sidebar-brand a {
-            color: #999999;
-        }
-
-            .sidebar-nav > .sidebar-brand a:hover {
-                color: #fff;
-                background: none;
-
-            }
 
 
 

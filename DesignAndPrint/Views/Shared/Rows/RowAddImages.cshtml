@@ -1,18 +1,16 @@
 ﻿
 
 
+<div class="" id="choose-image">
 
-<div>
-    <img src="~/Images/accent.png" id="imgOriginal" />
-</div>
-<div class="text-justify" id="choose-image">
+<div class="text-justify" >
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=".add-to-all-modal">
         Add picture to all boxes
     </button>
 
-    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
+    @*<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".templates-modal">
         Choose different template
-    </button>
+    </button>*@
 
 
 </div>
@@ -28,7 +26,14 @@
         </div>
     }
 </div>
-<hr />
 <div class="row text-center">
-    <button class="btn btn-success btn-lg btn-continue" id="btnFinishAndPrint">Finnish and Print</button>
+    <button class="btn btn-success btn-lg btn-continue" id="btnFinishAndPrint">
+                <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+
+        Finnish and Print
+                <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+
+    </button>
+</div>
+    
 </div>

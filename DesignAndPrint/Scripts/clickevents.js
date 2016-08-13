@@ -1,14 +1,62 @@
-﻿$('#btnContinueWithPapers').click(function () {
+﻿$(document).ready(function () {
+      window.scrollTo(0,0);
+    $('#btnContinueWithPapers').animate({
+        opacity: 1
+    }, 1500);
+});
+
+$('#btnContinueWithPapers').click(function () {
+    $(this).animate({
+        opacity: 0
+    }, 500);
     $('#aChoosePaper').click();
+    $('#choose-paper').animate({
+        opacity: 1
+    }, 500, function () {
+        $('#btnContinueWiTemplates').animate({
+        opacity: 1
+    }, 1500);
+    });
+
 });
 $('#btnContinueWiTemplates').click(function () {
+
+    $(this).animate({
+        opacity: 0
+    }, 500);
+    $('#aChooseTemplate').show();
     $('#aChooseTemplate').click();
+    $('#choose-template').animate({
+        opacity: 1
+    }, 500, function () {
+        $('#btnContinueWithPictures').animate({
+        opacity: 1
+    }, 1500);
+    });
 });
 $('#btnContinueWithPictures').click(function () {
+    $(this).animate({
+        opacity: 0
+    }, 500);
+    $('#aChoosePictures').show();
     $('#aChoosePictures').click();
+    $('#choose-image').animate({
+        opacity: 1
+    }, 500, function () {
+        $('#btnFinishAndPrint').animate({
+        opacity: 1
+    }, 1500);
+    });
 });
 $('#btnFinishAndPrint').click(function () {
+    $(this).animate({
+        opacity: 0
+    }, 500);
+    $('#aFinishAndPrint').show();
     $('#aFinishAndPrint').click();
+    $('#finishAndPrint').animate({
+        opacity: 1
+    }, 500);
 });
 
 $('#print-button').click(function () {
@@ -46,3 +94,7 @@ function TemplateClick(elem) {
     $(elem).addClass("active-template");
 
 };
+$(".papersizes .panel").click(function () {
+      $(".papersizes .panel").removeClass("active-paper");
+    $(this).addClass("active-paper");
+})

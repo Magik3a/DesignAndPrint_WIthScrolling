@@ -1,11 +1,46 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head  prefix="og: http://ogp.me/ns#">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+
+
+
+
+     @*start the social content*@
+    <!-- for Google -->
+    <meta name="description" content="YeppeY - Emotions on a sticker!" />
+    <meta name="keywords" content="YeppeY - Emotions on a sticker!" />
+    <meta http-equiv="Content-Language" content="bg">
+    <meta name="author" content="www.s2kdesign.com">
+    <meta name="COPYRIGHT" content="Copyright 2016 www.s2kdesign.com " />
+    <meta name="Distribution" content="Global" />
+    <meta name="Rating" content="General" />
+    <meta name="geo.country" content="BG" />
+    <meta name="icbm" content="Internet" />
+    <meta name="dc.language" content="bg" />
+    <meta name="geo.position" content="46;20" />
+    <meta name="geo.region" content="BG-06" />
+    <meta content="index, follow" name="robots" />
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="www.yeppey.com" />
+    <meta property="og:image" content="http://akcetnl-001-site2.ctempurl.com/Images/LogoFB.png" />
+
+    <meta property="og:description" content="YeppeY - Emotions on a sticker!" />
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="www.yeppey.com" />
+    <meta name="twitter:description" content="YeppeY - Emotions on a sticker!" />
+    <meta name="twitter:image" content="http://akcetnl-001-site2.ctempurl.com/Images/LogoFB.png" />
+    @*end the social content*@
+
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/templates")
+
     @Scripts.Render("~/bundles/modernizr")
 
     <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.common.min.css")" rel="stylesheet" type="text/css" />
@@ -14,7 +49,7 @@
     <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.default.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/kendo/2016.2.714/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
 
@@ -27,7 +62,7 @@
   
         <div class="content-header">
              <h1 id="home" class="">
-                    <a id="menu-toggle" href="#" class="btn btn-menu btn-lg toggle">
+                    <a  href="#" class="btn btn-menu btn-lg toggle menu-toggle">
                       <span class="glyphicon glyphicon-align-justify"></span>
          
                     </a>
@@ -71,10 +106,15 @@
     <script>
             
        $(document).ready(function() {
-        
+        // Some error notification
+$("body").overhang({
+  type: "error",
+  message: "Whoops! Something went wrong!",
+  closeConfirm: true
+});
                 
 	/*Menu-toggle*/
-    $("#menu-toggle").click(function(e) {
+    $(".menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });

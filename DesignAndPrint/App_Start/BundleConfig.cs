@@ -18,11 +18,16 @@ namespace DesignAndPrint
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                        "~/Scripts/overhang.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                           "~/Scripts/overhang.min.css",
                       "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/templates").Include(
+                     "~/Content/Templates.min.css"));
         }
     }
 }

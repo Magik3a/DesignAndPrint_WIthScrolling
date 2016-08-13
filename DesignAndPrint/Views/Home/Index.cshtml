@@ -7,7 +7,40 @@
 
 @Html.Partial("Rows/RowPaperSizes")
 
-@Html.Partial("Rows/RowTemplates")
+@{
+    var templates = new List<DesignAndPrint.Models.Templates>() {
+        new DesignAndPrint.Models.Templates()
+        {
+            TemplateName = "",
+            TemplateClassName = "col-sm-6 template-square",
+                 BoxClassName = "template-box-square",
+            BoxCount = 20
+        },
+         new DesignAndPrint.Models.Templates()
+        {
+            TemplateName = "",
+            TemplateClassName = "col-sm-6 template-rectangle",
+            BoxClassName = "template-box-rectangle",
+            BoxCount = 15
+        },
+          new DesignAndPrint.Models.Templates()
+        {
+            TemplateName = "",
+            TemplateClassName = "col-sm-6 template-ellipsis",
+                 BoxClassName = "template-box-ellipsis",
+            BoxCount = 8
+        },
+           new DesignAndPrint.Models.Templates()
+        {
+            TemplateName = "",
+            TemplateClassName = "col-sm-6 template-round",
+               BoxClassName = "template-box-round",
+            BoxCount = 12
+        }
+    };
+}
+
+@Html.Partial("Rows/RowTemplates", templates)
 
 @Html.Partial("Rows/RowAddImages")
 
@@ -31,6 +64,14 @@
 
 
     <script>
+        //$('body').on({
+        //    'mousewheel': function (e) {
+        //        if (e.target.id == 'el') return;
+        //        e.preventDefault();
+        //        e.stopPropagation();
+        //    }
+        //})
+
         var ImageCropper = {
             config: {
                 cropX: 0,

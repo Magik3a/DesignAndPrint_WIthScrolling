@@ -1,31 +1,37 @@
-﻿<div class="row " id="choose-template">
+﻿@model List<DesignAndPrint.Models.Templates>
 
-    @for (var i = 0; i < 4; i++)
-    {
-        <div class="col-sm-6" data-template-name="template @i">
-            <div class="panel panel-info template" onmousedown="TemplateClick(this)">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        Cool template @i
+<div class="row " id="choose-template">
+ @foreach (var template in Model)
+ {
+            <div class="@template.TemplateClassName" data-template-name="@template.TemplateName">
+                <div class="panel panel-info template" onmousedown="TemplateClick(this)">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Boxes in current template - @template.BoxCount
+                        </div>
                     </div>
-                </div>
-                <div class="panel-body">
-                    @for (var v = 0; v < 10 - i; v++)
-                    {
-                        <div class="col-sm-3">
-                            <div class="panel panel-default template-small-box">
-                                <div class="panel-body">
+                    <div class="panel-body">
+                        @for (var v = 0; v < template.BoxCount; v++)
+                        {
+                            <div class="@template.BoxClassName">
+                                <div class="panel panel-default template-small-box">
+                                    <div class="panel-body">
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-
+ }
 </div>
 <div class="row text-center">
-    <button class="btn btn-success btn-lg btn-continue" id="btnContinueWithPictures">Continue With Adding Images</button>
+
+    <button class="btn btn-success btn-lg btn-continue" id="btnContinueWithPictures">
+        <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+        Continue With Adding Images
+        <span class="glyphicon glyphicon-circle-arrow-down" style="padding: 15px">        </span>
+
+    </button>
 </div>

@@ -1,0 +1,138 @@
+﻿.active-template {
+  -moz-box-shadow: 0 0 25px blue, inset 0 0 5px black;
+  -webkit-box-shadow: 0 0 25px blue, inset 0 0 5px black;
+  box-shadow: 0 0 25px blue, inset 0 0 5px black;
+}
+.active-template > .panel-body {
+  background-color: rgba(0, 13, 255, 0.35);
+}
+/*   Template Square   */
+.template-square {
+  text-align: center;
+  /*   Template Square Box */
+  /*   Template Square Box */
+}
+.template-square .template-box-square {
+  width: 10em;
+  margin-top: 2%;
+  margin-right: 3%;
+  display: inline-block;
+}
+.template-square .template-box-square .panel-body {
+  height: 9em;
+}
+@media only screen and (max-width: 1024px) and (max-height: 768px) {
+  .template-square {
+    /*   Template Square Box */
+    /*   Template Square Box */
+  }
+  .template-square .template-box-square {
+    width: 4em;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
+  .template-square .template-box-square .panel-body {
+    height: 3.5em;
+  }
+}
+/*******************************************/
+/*   Template Round   */
+.template-round {
+  text-align: center;
+  /*   Template Round Box */
+  /*   Template Round Box */
+}
+.template-round .template-box-round {
+  width: 12em;
+  margin-top: 2%;
+  margin-right: 3%;
+  display: inline-block;
+}
+.template-round .template-box-round .panel {
+  -moz-border-radius: 7em !important;
+  -webkit-border-radius: 7em !important;
+  border-radius: 7em !important;
+}
+.template-round .template-box-round .panel-body {
+  height: 11em;
+}
+@media only screen and (max-width: 1024px) and (max-height: 768px) {
+  .template-round {
+    /*   Template Square Box */
+    /*   Template Square Box */
+  }
+  .template-round .template-box-round {
+    width: 6em;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
+  .template-round .template-box-round .panel-body {
+    height: 5.5em;
+  }
+}
+/*******************************************/
+/*   Template Ellipsis   */
+.template-ellipsis {
+  text-align: center;
+  /*   Template Ellipsis Box */
+  /*   Template Ellipsis Box */
+}
+.template-ellipsis .template-box-ellipsis {
+  width: 18em;
+  margin-top: 2%;
+  margin-right: 5%;
+  display: inline-block;
+}
+.template-ellipsis .template-box-ellipsis .panel {
+  -moz-border-radius: 100% !important;
+  -webkit-border-radius: 100% !important;
+  border-radius: 100% !important;
+}
+.template-ellipsis .template-box-ellipsis .panel-body {
+  height: 11em;
+}
+@media only screen and (max-width: 1024px) and (max-height: 768px) {
+  .template-ellipsis {
+    /*   Template Square Box */
+    /*   Template Square Box */
+  }
+  .template-ellipsis .template-box-ellipsis {
+    width: 9em;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
+  .template-ellipsis .template-box-ellipsis .panel-body {
+    height: 5.5em;
+  }
+}
+/*******************************************/
+/*   Template Rectangle   */
+.template-rectangle {
+  text-align: center;
+  /*   Template Rectangle Box */
+  /*   Template Rectangle Box */
+}
+.template-rectangle .template-box-rectangle {
+  width: 14em;
+  margin-top: 2%;
+  margin-right: 3%;
+  display: inline-block;
+}
+.template-rectangle .template-box-rectangle .panel-body {
+  height: 9em;
+}
+@media only screen and (max-width: 1024px) and (max-height: 768px) {
+  .template-rectangle {
+    /*   Template Square Box */
+    /*   Template Square Box */
+  }
+  .template-rectangle .template-box-rectangle {
+    width: 6em;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
+  .template-rectangle .template-box-rectangle .panel-body {
+    height: 3.5em;
+  }
+}
+/*******************************************/
