@@ -125,14 +125,7 @@ $("#button-wrapper").on('click', "#send-pdf-button", function () {
     $(this).html("<span class='glyphicon glyphicon-envelope'></span> Press again to sent!")
 });
 $("#button-wrapper").on('click', "#send-message", function () {
-    var testEmail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (!testEmail.test($('#input-user-email-pdf').val())) {
-        $("#wrapper").overhang({
-            type: "warn",
-            message: "This email is not appropriate, can you check what is going on!",
-            duration: 2,
-            upper: true
-        });
+    if (!ValidateUserEmail($('#input-user-email-pdf').val())) {
         return;
     }
     if (!ValidatePaperBeforeFinnish()) {
@@ -167,7 +160,7 @@ function ValidatePaperBeforeFinnish() {
     return true;
 };
 function ValidateTemplateBeforeFinnish() {
-     if (!$(".template").hasClass('active-template')) {
+    if (!$(".template").hasClass('active-template')) {
         $("#wrapper").overhang({
             type: "warn",
             message: "You have to choose template!",
@@ -175,9 +168,23 @@ function ValidateTemplateBeforeFinnish() {
             upper: true
         });
         return false;
-     }
-     return true;
+    }
+    return true;
 };
+function ValidateUserEmail(email) {
+    var testEmail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!testEmail.test(email)) {
+        $("#wrapper").overhang({
+            type: "warn",
+            message: "This email is not appropriate, can you check what is going on!",
+            duration: 2,
+            upper: true
+        });
+        return false;
+    }
+    return true;
+}
+
 // FUnctions for adding classes to active elements
 function AddImageToPlaceHolder(elem) {
 
@@ -243,3 +250,28 @@ $(".papersizes .panel").click(function () {
     $(".papersizes .panel").removeClass("active-paper");
     $(this).addClass("active-paper");
 })
+
+
+// Email Modal Sent Completed
+function EmailSendComplete(data) {
+    console.log(data);
+    if (data.responseText == "true") {
+        $("body").overhang({
+            type: "success",
+            message: "Woohoo! Thanks For your message!"
+        });
+
+
+        $("#modal-body-email form").hide(500);
+          $("#modal-body-email .alert").delay(2000).show(500);
+    }
+    else {
+         $("#wrapper").overhang({
+            type: "warn",
+            message: "Something is happening with the server, try again later!",
+            duration: 2,
+            upper: true
+        });
+        return false;
+    }
+}

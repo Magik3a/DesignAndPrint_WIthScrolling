@@ -6,10 +6,12 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -94,7 +96,7 @@ namespace DesignAndPrint.Controllers
                                 }
                             };
             var template = new Templates();
-     
+
             foreach (var item in templates)
             {
                 if (item.TemplateName == templateName)
@@ -103,17 +105,17 @@ namespace DesignAndPrint.Controllers
             }
             return PartialView("Rows/Template", template);
         }
-        
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult DownloadStickers(string html, string pagesize)
         {
-            if(String.IsNullOrWhiteSpace(pagesize))
+            if (String.IsNullOrWhiteSpace(pagesize))
                 return Json(false);
             try
             {
                 byte[] bytes = GeneratePDF(html, pagesize);
-                
+
                 // Generate a new unique identifier against which the file can be stored
                 string handle = Guid.NewGuid().ToString();
                 Session[handle] = bytes.ToArray();
@@ -137,7 +139,7 @@ namespace DesignAndPrint.Controllers
             if (Session[fileGuid] != null)
             {
                 byte[] data = Session[fileGuid] as byte[];
-                return File(data, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture) +".pdf");
+                return File(data, "application/pdf", DateTime.Now.ToString(CultureInfo.InvariantCulture) + ".pdf");
             }
             else
             {
@@ -178,11 +180,83 @@ namespace DesignAndPrint.Controllers
             bytes = ms.ToArray();
 
             var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
-              System.IO.File.WriteAllBytes(testFile, bytes);
+            System.IO.File.WriteAllBytes(testFile, bytes);
             #endregion
 
             return bytes;
         }
+
+        public ActionResult SentEmailAjax(string Email, string NameUser, string Subject, string Body)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine();
+                sb.AppendLine("From Email : " + Email);
+                sb.AppendLine();
+                sb.AppendLine();
+                sb.AppendLine("User Name : " + NameUser);
+                sb.AppendLine();
+                sb.AppendLine();
+                sb.AppendLine("Subject : " + Subject);
+                sb.AppendLine();
+                sb.AppendLine();
+                sb.AppendLine(Body);
+                if (!SendEmail(ConfigurationManager.AppSettings["ContactEmail"], "New Email - " + DateTime.Now.ToString("dd-MM-yyyy"), sb.ToString()))
+                {
+
+                    return Json(false);
+                }
+
+                return Json(true);
+
+            }
+            return Json(false);
+        }
+
+        public Boolean SendEmail(string reciever, string subject, string body, byte[] FileByte, string NameAtachemnt)
+        {
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(reciever);
+                mail.Subject = subject;
+                mail.Body = body;
+                Attachment file = new Attachment(new MemoryStream(FileByte), NameAtachemnt);
+                mail.Attachments.Add(file);
+                mail.IsBodyHtml = true;
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+        public Boolean SendEmail(string reciever, string subject, string body)
+        {
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(reciever);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

@@ -663,6 +663,8 @@
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <Content Include="Scripts\jquery.browser.min.js" />
     <Content Include="Scripts\jquery.printelement.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\kendo\2016.2.714\angular.min.js" />
     <Content Include="Scripts\kendo\2016.2.714\jquery.min.js" />
