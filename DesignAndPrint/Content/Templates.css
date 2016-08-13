@@ -66,6 +66,7 @@
   -moz-border-radius: 100% !important;
   -webkit-border-radius: 100% !important;
   border-radius: 100% !important;
+  overflow: hidden;
 }
 .template-box-ellipsis .panel-body {
   height: 11em;
@@ -88,6 +89,9 @@
 .template-box-rectangle {
   margin-top: 2%;
   display: inline-block;
+}
+.template-box-rectangle .panel {
+  overflow: hidden;
 }
 .template-box-rectangle .panel-body {
   height: 90px;
