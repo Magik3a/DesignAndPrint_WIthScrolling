@@ -150,6 +150,9 @@ namespace DesignAndPrint.Controllers
         }
         public byte[] GeneratePDF(string html, string pageSize)
         {
+
+           
+
             #region Generate PDF
             Byte[] bytes;
             var ms = new MemoryStream();
@@ -168,6 +171,24 @@ namespace DesignAndPrint.Controllers
                 OptionAutoCloseOnEnd = true
             };
             hDocument.LoadHtml(html);
+            List<string> xpaths = new List<string>();
+            foreach (HtmlNode node in hDocument.DocumentNode.DescendantNodes())
+            {
+                if (node.Name.ToLower() == "img")
+                {
+                    var src = node.Attributes["src"].Value.Split('?')[0];
+                    src = Server.MapPath(src);
+                    node.SetAttributeValue("src", src);
+                }
+                else if (node.Name.ToLower() == "a")
+                {
+                    xpaths.Add(node.XPath);
+                }
+            }
+            foreach (string xpath in xpaths)
+            {
+                hDocument.DocumentNode.SelectSingleNode(xpath).Remove();
+            }
 
             var closedTags = hDocument.DocumentNode.WriteTo();
             var example_html = closedTags;
