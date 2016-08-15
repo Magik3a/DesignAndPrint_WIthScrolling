@@ -15,11 +15,17 @@ body {
         overflow: auto !important;
     }
 }
-
+.down-menu{
+    margin-top: 280%;
+}
 .k-widget {
     margin: 50px;
+    text-align: left;
 }
-
+.k-upload-button{
+  display: inline-block;
+    margin-bottom: 20px;
+}
 .container {
     max-width: 900px;
 }
@@ -58,20 +64,20 @@ body {
 
     .paper-name {
 
-        font-size: 10em;
+        font-size: 6em;
         font-style: italic;
         text-shadow: 0 10px 5px #808080;
     }
 
 .a4size {
-    height: 600px;
+    height: 450px;
     width: 42%;
     margin-left: 5%;
 }
 
 .UsPaper {
     width: 42%;
-    height: 550px;
+    height: 400px;
     margin-left: 5%;
     text-align: center;
 }
@@ -219,6 +225,7 @@ body {
 }
 
 #wrapper {
+    text-align: center;
     overflow: auto;
     padding-left: 250px;
     transition: all 0.4s ease 0s;
@@ -248,11 +255,18 @@ body {
     }
 
 #page-content-wrapper {
-    width: 94%;
+    width: 70%;
     margin-left: 3%;
+    display: inline-block;
 }
 
-
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+ #page-content-wrapper {
+    width: 93%;
+    margin-left: 3%;
+    display: inline-block;
+}
+}
 
 .sidebar-nav {
     position: absolute;
