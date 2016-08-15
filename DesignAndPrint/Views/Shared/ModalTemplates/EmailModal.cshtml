@@ -3,20 +3,20 @@
 
 
 <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal-label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="emailModal-label">Send us email and we will say "HI" shortly!</h4>
             </div>
-            <div class="modal-body" id="modal-body-email">
+            <div class="modal-body " id="modal-body-email">
                 <div class="alert alert-success" style="display: none;">
                     <h1>
                         Message is sent successfully. We will answer you ASAP!
                     </h1>
                 </div>
 
-                @using (Ajax.BeginForm("SentEmailAjax", "Home", null, new AjaxOptions { OnComplete = "EmailSendComplete" }, null)) {
+                @using (Ajax.BeginForm("SentEmailAjax", "Home", null, new AjaxOptions { OnComplete = "EmailSendComplete" }, new { @class="col-md-8 col-md-offset-2" })) {
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required="required" >
@@ -36,19 +36,15 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
                 }
-                <form>
-                   
-                </form>
+              
 
-
-
-
+                <div class="clearfix"></div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

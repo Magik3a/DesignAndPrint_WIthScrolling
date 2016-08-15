@@ -6,6 +6,9 @@
 .active-template > .panel-body {
   background-color: rgba(0, 13, 255, 0.35);
 }
+#image-panel {
+  max-width: 1600px;
+}
 #choose-template {
   max-width: 1600px;
   /*   Template Square   */
@@ -26,6 +29,7 @@
     width: 24%;
     margin-top: 2%;
     margin-right: 0%;
+    display: inline-block;
   }
   .template-box-square .panel-body {
     height: 3.5em;

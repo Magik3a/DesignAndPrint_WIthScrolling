@@ -179,8 +179,8 @@ namespace DesignAndPrint.Controllers
             doc.Close();
             bytes = ms.ToArray();
 
-            var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
-            System.IO.File.WriteAllBytes(testFile, bytes);
+          //  var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
+          //  System.IO.File.WriteAllBytes(testFile, bytes);
             #endregion
 
             return bytes;

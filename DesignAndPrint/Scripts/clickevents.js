@@ -111,7 +111,7 @@ $("#download-pdf-button").click(function () {
                 return;
             }
             console.log(data.fileGuid);
-            //    window.location = '/Home/Download?fileGuid=' + data.fileGuid;
+            window.location = '/Home/Download?fileGuid=' + data.fileGuid;
         }
     })
 });
