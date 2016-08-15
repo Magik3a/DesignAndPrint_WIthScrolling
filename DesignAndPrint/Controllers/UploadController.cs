@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -30,15 +33,35 @@ namespace DesignAndPrint.Controllers
                     fileName = DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss-fff",
                                             CultureInfo.InvariantCulture) + "." + file.FileName.Split('.')[1];
                     physicalPath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
-
-                    file.SaveAs(physicalPath);
+                    var image = ResizeImage(file.InputStream, 640);
+                    image.Save(physicalPath);
+                    //file.SaveAs(physicalPath);
                 }
             }
 
             // Return an empty string to signify success
             return Json(new { status = "OK", filename= fileName, cutforall = false }, "text/plain");
         }
+        private Bitmap ResizeImage(Stream stream, int width)
+        {
+            Image image = Image.FromStream(stream);
+            int sourceWidth = image.Width;
+            int sourceHeight = image.Height;
 
+            float nPercent = ((float)width / (float)sourceWidth);
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            g.DrawImage(image, 0, 0, destWidth, destHeight);
+            g.Dispose();
+
+            return b;
+        }
         public ActionResult SaveAll(IEnumerable<HttpPostedFileBase> filesforall)
         {
             string physicalPath = "";
@@ -53,8 +76,8 @@ namespace DesignAndPrint.Controllers
                     fileName = DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss-fff",
                                             CultureInfo.InvariantCulture) + "." + file.FileName.Split('.')[1];
                     physicalPath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
-
-                    file.SaveAs(physicalPath);
+                    var image = ResizeImage(file.InputStream, 640);
+                    image.Save(physicalPath);
                 }
             }
 
