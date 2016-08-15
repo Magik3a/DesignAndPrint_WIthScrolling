@@ -164,7 +164,7 @@
                     if (img) {
                         $('.active-box .panel-body img').remove();
                     }
-                    $('.active-box .panel-body').append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 99%; float: left;' />");
+                    $('.active-box .panel-body').append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 100%; float: left;' />");
                     $(".k-upload ").show();
                     $('#image').attr("src", "");
                     $('#image').hide();
@@ -196,7 +196,7 @@
                             console.log("have image");
                         }
 
-                        $(element).children(".panel-body").append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 99%; float: left;' />");
+                        $(element).children(".panel-body").append("<img src='" + data.photoPath + "?t=" + new Date().getTime() + "' style='width: 100%; height: 100%; float: left;' />");
                         console.log("appended image");
                     });
 

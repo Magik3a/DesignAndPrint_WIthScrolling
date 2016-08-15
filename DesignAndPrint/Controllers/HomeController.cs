@@ -114,7 +114,7 @@ namespace DesignAndPrint.Controllers
                 return Json(false);
             try
             {
-                byte[] bytes = GeneratePDF(html, pagesize);
+                byte[] bytes = GenerateImagesPDF(html, pagesize);
 
                 // Generate a new unique identifier against which the file can be stored
                 string handle = Guid.NewGuid().ToString();
@@ -151,7 +151,7 @@ namespace DesignAndPrint.Controllers
         public byte[] GeneratePDF(string html, string pageSize)
         {
 
-           
+
 
             #region Generate PDF
             Byte[] bytes;
@@ -179,6 +179,7 @@ namespace DesignAndPrint.Controllers
                     var src = node.Attributes["src"].Value.Split('?')[0];
                     src = Server.MapPath(src);
                     node.SetAttributeValue("src", src);
+                    node.SetAttributeValue("style", "display: inline; float: left;");
                 }
                 else if (node.Name.ToLower() == "a")
                 {
@@ -200,8 +201,75 @@ namespace DesignAndPrint.Controllers
             doc.Close();
             bytes = ms.ToArray();
 
-          //  var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
-          //  System.IO.File.WriteAllBytes(testFile, bytes);
+            //  var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
+            //  System.IO.File.WriteAllBytes(testFile, bytes);
+            #endregion
+
+            return bytes;
+        }
+
+        public byte[] GenerateImagesPDF(string html, string pageSize)
+        {
+
+
+
+            #region Generate PDF
+            Byte[] bytes;
+            var ms = new MemoryStream();
+            //Create an iTextSharp Document wich is an abstraction of a PDF but **NOT** a PDF
+            var doc = new Document();
+            if (pageSize == "A4")
+                doc = new Document(PageSize.A4);
+            else
+                doc = new Document(PageSize.LETTER );
+            var writer = PdfWriter.GetInstance(doc, ms);
+            doc.Open();
+            doc.NewPage();
+            var hDocument = new HtmlDocument()
+            {
+                OptionWriteEmptyNodes = true,
+                OptionAutoCloseOnEnd = true
+            };
+            hDocument.LoadHtml(html);
+            List<string> xpaths = new List<string>();
+            int itemsPerRow = 4;
+            int counter = 0;
+            foreach (HtmlNode node in hDocument.DocumentNode.SelectNodes("//img"))
+            {
+                counter++;
+                var src = node.Attributes["src"].Value.Split('?')[0];
+                src = Server.MapPath(src);
+                Image jpg = Image.GetInstance(src);
+                jpg.Alignment = Image.TEXTWRAP | Image.ALIGN_LEFT ;
+        
+                jpg.ScaleToFit(140f, 70f);
+                jpg.Border = 5;
+                jpg.BorderColor = BaseColor.BLACK;
+              
+                doc.Add(jpg);
+                if (counter == itemsPerRow || (counter > itemsPerRow && counter % itemsPerRow == 0))
+                {
+                    doc.Add(new Paragraph("\n\n\n\n\n\n\n\n\n\n"));
+                }
+            }
+            foreach (string xpath in xpaths)
+            {
+                hDocument.DocumentNode.SelectSingleNode(xpath).Remove();
+            }
+
+            var closedTags = hDocument.DocumentNode.WriteTo();
+            var example_html = "";
+            var example_css = System.IO.File.ReadAllText(Server.MapPath("~/Content/Site.css"));
+            example_css += System.IO.File.ReadAllText(Server.MapPath("~/Content/Templates.min.css"));
+            var msCss = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_css));
+            var msHtml = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_html));
+            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, msHtml, msCss, Encoding.UTF8);
+
+            doc.Close();
+            bytes = ms.ToArray();
+
+            //  var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
+            //  System.IO.File.WriteAllBytes(testFile, bytes);
             #endregion
 
             return bytes;
